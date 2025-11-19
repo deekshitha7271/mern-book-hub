@@ -130,7 +130,7 @@ const Register = () => {
   const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const userDetails = { username: userName, password }
-    const url = 'http://localhost:4000/books/api/login'
+    const url = 'http://localhost:4000/books/api/register'
     const options = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -186,12 +186,12 @@ const Register = () => {
           </div>
 
           <button type="submit" className="register-btn">
-            Login
+            Register
           </button>
 
           {errorMsg && <p className="error-msg">{errorMsg}</p>}
           <p className="login-link">
-            Don't have an account? <Link to="/register">Register</Link>
+            Already have an account? <Link to="/login">Login</Link>
           </p>
         </form>
       </div>

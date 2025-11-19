@@ -1,4 +1,4 @@
-*{
+/* *{
     margin:0px;
     padding:0px;
 }
@@ -12,7 +12,7 @@
 
 }
 .details-card{
-    height:550px;
+    min-height:550px;
     width:1140px;
     top: 153px;
     left: 150px;
@@ -24,16 +24,25 @@
     margin-top:100px;
     margin-bottom:100px;
     
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition:  0.8s ease-in-out;
+
+    
 }
 .bg-container{
     background-color:#f5f7fa;
-    /* margin:140px; */
+    
     height:100%;
     width:100vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+      background: linear-gradient(180deg, #2a0845, #6441a5);
+  border-right: 2px solid rgba(255, 255, 255, 0.15);
+
 
 }
 .upper{
@@ -69,7 +78,7 @@ color:#334155;
     font-size: 24px;
     line-height: 42px;
     letter-spacing: 0px;
-    color: #0284C7;
+    color: #1f055e;
 }
 .detail-status{
     font-family: Inter;
@@ -239,4 +248,191 @@ color:#334155;
     }
 
 
+}
+
+.see-more-button{
+    background: #1a0033;
+    border:none;
+    border-radius:8px;
+    padding:10px 20px;
+    margin-top:20px;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white
+}
+.read-link{
+    text-decoration: none;
+    color:white;
+} */
+
+
+/* === Cosmic Background === */
+.bg-container {
+  min-height: 100vh;
+  width:100vw;
+  background: radial-gradient(circle at top, #2b006b, #0c0020);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  color: #fff;
+}
+
+.bg-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("https://res.cloudinary.com/dqxhjnhrt/image/upload/v1752385848/nebula-bg.jpg");
+  opacity: 0.1;
+  background-size: cover;
+  animation: moveStars 60s linear infinite;
+  z-index: 0;
+}
+
+
+
+@keyframes moveStars {
+  from { background-position: 0 0; }
+  to { background-position: 2000px 2000px; }
+}
+
+/* === Card Layout === */
+.details-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 0 30px rgba(160, 100, 255, 0.2);
+  padding: 40px;
+  margin-top: 80px;
+  width: 80%;
+  max-width: 1000px;
+  z-index: 2;
+  animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === Upper Section === */
+.upper {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cover-pic {
+  width: 230px;
+  height: 320px;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(210, 160, 255, 0.5);
+  animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* === Title & Info === */
+.detail-title {
+  font-size: 2.3rem;
+  background: linear-gradient(90deg, #e3b3ff, #a36eff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 8px rgba(200, 120, 255, 0.4);
+}
+
+.detail-authorName {
+  color: #cbb9ff;
+  font-size: 1.1rem;
+}
+
+.detail-rating, .detail-status {
+  font-size: 1rem;
+  color: #d2c4ff;
+}
+
+.real-data-rating {
+  color: #ffd700;
+  font-weight: bold;
+}
+
+/* === Divider === */
+hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.3), rgba(255,255,255,0));
+  margin: 30px 0;
+}
+
+/* === Lower Section === */
+.lower {
+  text-align: left;
+  padding: 0 10px;
+}
+
+.static-about-author, .static-about-book {
+  color: #e4caff;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+  text-shadow: 0 0 6px rgba(180, 140, 255, 0.4);
+}
+
+.dynamic-about-author, .dynamic-about-book {
+  color: #c6b8ff;
+  line-height: 1.7;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+/* === Button === */
+.button-cont {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.see-more-button {
+  background: linear-gradient(135deg, #9f68ff, #5c2fff);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(150, 100, 255, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.see-more-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 35px rgba(180, 120, 255, 0.7);
+}
+
+.read-link {
+  text-decoration: none;
+  color: white;
+}
+
+/* === Loader Centering === */
+.loader-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
 }

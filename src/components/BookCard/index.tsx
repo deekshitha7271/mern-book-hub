@@ -6,7 +6,7 @@ interface Book{
     authorName:string, 
     coverPic:string,
     rating:string,
-    id:number,
+    _id:number,
     readStatus:boolean,
     title:string
 }
@@ -19,25 +19,28 @@ interface BookCardProps{
 
 const BookCard  = (props:BookCardProps):React.ReactElement=> {
     const {books} = props
-    const {authorName, coverPic, rating,id, readStatus, title} = books
+    const {authorName, coverPic, rating,_id, readStatus, title} = books
     return(
-        <Link to={`/books/${id}`}>
-        <div className='bookCard'>
-            <div className='in-img-cont'>
-            <img src={coverPic} className='in-img'/>
-            </div>
-            <div className='in-des-cont'>
-                <h1 className="in-title">{title}</h1>
-                <p className="in-author">{authorName}</p>
-                
-                <p className="in-rating">Avg Rating<span><img src="https://res.cloudinary.com/dqxhjnhrt/image/upload/v1752370960/Icon_cocjoa.png" className="in-star"/></span><span className="in-rating-value">{rating}</span></p>
-                
-                
-                
-                <p className="in-status">Status: <span className='in-status-value'>{readStatus}</span></p>
-            </div>
-        </div>
-        </Link>
+<Link to={`/books/${_id}`}>
+  <div className="bookCard cosmic-card">
+    <div className="in-img-cont">
+      <img src={coverPic} className="in-img cosmic-glow" alt={title} />
+    </div>
+    <div className="in-des-cont">
+      <h1 className="in-title">{title}</h1>
+      <p className="in-author">{authorName}</p>
+      <p className="in-rating">
+        ⭐ {rating} <span className="rating-text">avg rating</span>
+      </p>
+      <p className="in-status">
+        Status: <span className='in-status-value'>
+          {readStatus ? "Read" : "To Read"}
+        </span>
+      </p>
+    </div>
+  </div>
+</Link>
+
     )
 
 }

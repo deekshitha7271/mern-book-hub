@@ -4,14 +4,14 @@ import './index.css'
 import {TailSpin} from 'react-loader-spinner'
 import Header from "../Header"
 import BookCard from "../BookCard"
-import FiltersGroup from "../FiltersGroup"
+// import FiltersGroup from "../FiltersGroup"
 import Contact from "../Contact"
 import type { BookdetailsData } from "../types"
-interface Bookshelf{
-    id: string | number
-    value: string
-    label:string
-}
+// interface Bookshelf{
+//     id: string | number
+//     value: string
+//     label:string
+// }
 
 interface ApiResponse{
     status:string,
@@ -22,15 +22,13 @@ interface ApiBook{
     authorName: string;
     coverPic: string;
     _id: number;
-    rating: string;
-    readStatus: string;
     title: string;
 
 }
 
-interface BookshelvesProps {
-    bookshelvesList: Bookshelf[]
-}
+// interface BookshelvesProps {
+//     bookshelvesList: Bookshelf[]
+// }
 const apiStatusConstants = {
     initial: 'INITIAL',
     success: 'SUCCESS',
@@ -38,17 +36,17 @@ const apiStatusConstants = {
     inProgress: 'IN_PROGRESS'
 }
 
-const Bookshelves = (props:BookshelvesProps) => {
+const AudioBookshelves = () => {
     const [apiResponse, setApiResponse] = useState<ApiResponse>({
         status: apiStatusConstants.initial,
         data: null,
         errorMsg: null
     })
-    const {bookshelvesList} = props
-    console.log(bookshelvesList)
+    // const {bookshelvesList} = props
+    // console.log(bookshelvesList)
     
     
-    const [bookShelfName, setBookShelfName] = useState('ALL')
+    // const [bookShelfName, setBookShelfName] = useState('ALL')
     const [searchText, setSearchText] = useState('')
     const [searchInput, setSearchInput] = useState('')
 
@@ -72,15 +70,17 @@ const Bookshelves = (props:BookshelvesProps) => {
                     errorMsg: null,
                 })
 
-            Cookies.set('jwt_token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZjA3NzZkZGM1YTIzYWJkZmVlOGNmYiIsImlhdCI6MTc2MTY0MTA4Mn0.YtnxPejmXIZ9hiIRfF-w9ivjrM4lhb1l2Su-zVOn7_A')
+            // Cookies.set('jwt_token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZjA3NzZkZGM1YTIzYWJkZmVlOGNmYiIsImlhdCI6MTc2MTY0MTA4Mn0.YtnxPejmXIZ9hiIRfF-w9ivjrM4lhb1l2Su-zVOn7_A')
             const jwtToken = Cookies.get('jwt_token')
             console.log(jwtToken)
             //const url=`https://apis.ccbp.in/book-hub/books?shelf=${bookShelfName}&search=${searchText.toLowerCase()}`
-            const url=`http://localhost:4000/books/api/get?shelf=${bookShelfName}&search=${searchText}`
+            const url=`http://localhost:4000/books/api/get/audio`
             // console.log(url)
             const options = {
                 headers:{
                     Authorization: `Bearer ${jwtToken}`
+                    
+
                 },
                 method: 'GET'
             };
@@ -93,8 +93,6 @@ const Bookshelves = (props:BookshelvesProps) => {
                     authorName: each.authorName,
                     coverPic: each.coverPic,
                     _id: each._id,
-                    rating: each.rating,
-                    readStatus: each.readStatus,
                     title: each.title
                 }))
                 console.log(formattedData)
@@ -116,7 +114,7 @@ const Bookshelves = (props:BookshelvesProps) => {
 
         }
         getResponse()
-    },[bookShelfName,searchText])
+    },[searchText])
     const renderBooksListView = () => {
         const {data} = apiResponse
         
@@ -194,9 +192,9 @@ const Bookshelves = (props:BookshelvesProps) => {
             
         }
     }
-    const changeCategory = (value:string) => {
-        setBookShelfName(value)
-    }
+    // const changeCategory = (value:string) => {
+    //     setBookShelfName(value)
+    // }
     
     return(
         
@@ -208,7 +206,7 @@ const Bookshelves = (props:BookshelvesProps) => {
                 <div className="flexing">
                 <div className="side-cont">
                     <h1 className='heading'>Bookshelves</h1>
-                {bookshelvesList.map((each)=>(
+                {/* {bookshelvesList.map((each)=>(
 
                 <FiltersGroup 
                         key={each.id}
@@ -217,7 +215,7 @@ const Bookshelves = (props:BookshelvesProps) => {
                         isActive = {each.value==bookShelfName}
                         
                 />
-                ))}
+                ))} */}
                 
                 </div>
                 <div className="render-book-cont">
@@ -235,4 +233,4 @@ const Bookshelves = (props:BookshelvesProps) => {
 
 
 }
-export default Bookshelves
+export default AudioBookshelves

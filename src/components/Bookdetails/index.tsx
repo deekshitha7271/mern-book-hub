@@ -28,7 +28,8 @@ const Bookdetails = (): React.ReactElement => {
                 data:null
             }))
         const jwtToken = Cookies.get('jwt_token')
-        const url = `https://apis.ccbp.in/book-hub/books/${id}`
+        //const url = `https://apis.ccbp.in/book-hub/books/${id}`
+        const url = `http://localhost:4000/books/api/get/${id}`
         console.log(url)
         const options = {
             headers:{
@@ -40,17 +41,18 @@ const Bookdetails = (): React.ReactElement => {
         const response = await fetch(url,options)
         if(response.ok==true){
             const fetchedData = await response.json()
-            // console.log(fetchedData)
-            const book = fetchedData.book_details
+            console.log(fetchedData)
+            const book = fetchedData.book
             const formattedData = {
-                aboutAuthor:book.about_author,
-                aboutBook: book.about_book,
-                authorName: book.author_name,
-                coverPic: book.cover_pic,
-                id: book.id,
+                aboutAuthor:book.aboutAuthor,
+                aboutBook: book.aboutBook,
+                authorName: book.authorName,
+                coverPic: book.coverPic,
+                id: book._id,
                 rating: book.rating,
-                readStatus: book.read_status,
-                title: book.title
+                readStatus: book.readStatus,
+                title: book.title,
+                previewLink: book.previewLink
             }
             console.log(formattedData)
             setApiResponse(prev=>({
@@ -95,6 +97,12 @@ const Bookdetails = (): React.ReactElement => {
                 <p className='dynamic-about-author'>{data.aboutAuthor}</p>
                 <h1 className='static-about-book'>About Book</h1>
                 <p className='dynamic-about-book'>{data.aboutBook}</p>
+                <div className='button-cont'>
+                    <button className='see-more-button'>
+                        <a href={`http://localhost:4000${data.previewLink}`} target="_blank" rel="noopener noreferrer" className='read-link'>Start Reading Book</a>
+                    </button>
+                </div>
+               
             </div>
             
         </div>

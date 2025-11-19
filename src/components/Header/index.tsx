@@ -21,7 +21,7 @@ const Header = () => {
     <nav className='header-div'>
       <Link to="/">
     <div className="heading-cont">
-        <img src="https://res.cloudinary.com/dqxhjnhrt/image/upload/v1752118688/Group_7730_gl7f6c.png"className="logo-img"/>
+        <img src="https://res.cloudinary.com/dqxhjnhrt/image/upload/v1761669311/Screenshot_2025-10-28_220405_oukx91.png"className="logo-img"/>
         <h1 className="main-h">ook Hub</h1>
     </div>
     </Link>
@@ -31,6 +31,7 @@ const Header = () => {
     <div className='link-cont'>
       <Link to="/" onClick={onItem} className={activeLink === 'home' ? 'Active' : 'notIsActive'}>Home</Link>
       <Link to="/bookshelves" onClick={onItem2} className={activeLink === 'bookshelves' ? 'Active' : 'notIsActive'}>Bookshelves</Link>
+      <Link to="/audiobooks" className={activeLink === 'audiobooks' ? 'Active' : 'notIsActive'}>Audiobooks</Link>
       <div className='b-cont'>
       <button className='logout' onClick={onClickLogOut}>Logout</button>
       </div>

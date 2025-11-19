@@ -19,10 +19,12 @@ const FiltersGroup = (props:props) => {
       const pClass = isActive ? 'active-tab-btn' : 'tab-btn'
 
     return(
-        <li className='list-item'>
-         
-         <p className={pClass} onClick={onClickLabel}>{label}</p> 
-        </li>
+        <div className='filter-cont'>
+            <li className='list-item'>
+
+            <p className={pClass} onClick={onClickLabel}>{label}</p>
+            </li>
+        </div>
     )
         
         
