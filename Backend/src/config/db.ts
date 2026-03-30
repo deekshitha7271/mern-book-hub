@@ -10,10 +10,6 @@ export async function connectDb(url:string){
         console.log(`- State: ${connect.connection.readyState}`);
     }
     catch(e: any){
-        console.error('MongoDB connection error:');
-        console.error('- Error name:', e.name);
-        console.error('- Error message:', e.message);
-        console.error('- Stack trace:', e.stack);
         process.exit(1)
     }
 }
