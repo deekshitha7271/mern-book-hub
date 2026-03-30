@@ -1,0 +1,235 @@
+.audio-shelves-cont {
+    min-height: 100vh;
+    width: 100%;
+    background: linear-gradient(135deg, #0f0524, #1a0837, #43125d, #5c2d7d);
+    display: flex;
+    flex-direction: column;
+}
+
+.audio-flexing {
+    display: flex;
+    padding: 100px 32px 40px;
+    flex-grow: 1;
+}
+
+.audio-render-cont {
+    width: 100%;
+    /* Fills the entire available space */
+}
+
+.bookshelves-cont {
+    width: 100%;
+}
+
+.top-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.main-head {
+    color: #ffffff;
+    font-family: "Poppins", sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.search-div {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.search-div:focus-within {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.search-input {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    outline: none;
+    width: 250px;
+    padding: 4px;
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    stroke: #ffffff;
+    opacity: 0.7;
+}
+
+/* SPOTIFY GRID LAYOUT */
+.audiobooks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 28px;
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.audio-card-link {
+    text-decoration: none;
+}
+
+.spotify-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.spotify-card:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.spotify-cover-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.spotify-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.spotify-play-btn {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 48px;
+    height: 48px;
+    background: #1ed760;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.3s ease;
+    color: #000;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
+}
+
+.spotify-play-btn svg {
+    width: 24px;
+    height: 24px;
+    margin-left: 2px;
+    /* optical centering */
+}
+
+/* Hover effects for the cover */
+.spotify-card:hover .spotify-play-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.spotify-play-btn:hover {
+    background: #1db954;
+    transform: scale(1.05);
+}
+
+.spotify-title {
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.spotify-author {
+    color: #a7a7a7;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Fallback Loader and Empty States */
+.load {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.search-no-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60vh;
+    margin-top: 40px;
+}
+
+.search-no {
+    width: 380px;
+    height: auto;
+    opacity: 1;
+}
+
+.search-no-para {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    color: #fff;
+    margin-top: 24px;
+    text-align: center;
+}
+
+.went-wrong-head {
+    color: #ffffff;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.went-wrong-button {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 30px;
+    background: #1ed760;
+    /* changed to spotify green */
+    color: #000;
+    border: none;
+    border-radius: 30px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+}

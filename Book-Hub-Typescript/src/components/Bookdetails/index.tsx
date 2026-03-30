@@ -1,0 +1,152 @@
+import './index.css'
+import {useState, useEffect} from 'react'
+import { useParams } from 'react-router'
+import Cookies from 'js-cookie'
+import {TailSpin} from 'react-loader-spinner'
+import Header from '../Header'
+import type { ApiResponse } from '../types'
+
+
+const Bookdetails = (): React.ReactElement => {
+    const apiStatusConstants = {
+        initial:'INITIAL',
+        success: 'SUCCESS',
+        failure: 'FAILURE',
+        inProgress: 'IN_PROGRESS'
+    }
+    const {id} = useParams()
+    const [apiResponse, setApiResponse] = useState<ApiResponse>({
+        status:apiStatusConstants.initial,
+        data:null,
+        errorMsg:null
+    })
+    useEffect(()=>{
+       const getBookDetails = async () =>{
+        setApiResponse(prev=>({
+                ...prev,
+                status:apiStatusConstants.inProgress,
+                data:null
+            }))
+        const jwtToken = Cookies.get('jwt_token')
+        //const url = `https://apis.ccbp.in/book-hub/books/${id}`
+        const url = `http://localhost:4000/books/api/get/${id}`
+        console.log(url)
+        const options = {
+            headers:{
+                Authorization: `Bearer ${jwtToken}`
+            },
+            method:'GET',
+            
+        }
+        const response = await fetch(url,options)
+        if(response.ok==true){
+            const fetchedData = await response.json()
+            console.log(fetchedData)
+            const book = fetchedData.book
+            const formattedData = {
+                aboutAuthor:book.aboutAuthor,
+                aboutBook: book.aboutBook,
+                authorName: book.authorName,
+                coverPic: book.coverPic,
+                _id: book._id,
+                rating: book.rating,
+                readStatus: book.readStatus,
+                title: book.title,
+                previewLink: book.previewLink
+            }
+            console.log(formattedData)
+            setApiResponse(prev=>({
+                ...prev,
+                status:apiStatusConstants.success,
+                data:formattedData
+            }))
+        }
+        else{
+            setApiResponse(prev=>({
+                ...prev,
+                status:apiStatusConstants.failure,
+
+            }))
+        }
+
+       }
+       getBookDetails()
+    },[])
+    const renderBooksView = () :React.ReactElement=> {
+        const {data} = apiResponse
+        if(!data) return <></>
+        return(
+            <div className='bg-container'>
+                <Header/>
+        <div className='details-card'>
+            <div className='upper'>
+                <div>
+                <img src={data.coverPic} className='cover-pic'/>
+                </div>
+                <div>
+                    <h1 className='detail-title'>{data.title}</h1>
+                    <h1 className='detail-authorName'>{data.authorName}</h1>
+                    <h1 className='detail-rating'>Avg Rating <span className='star-img'><img src="https://res.cloudinary.com/dqxhjnhrt/image/upload/v1752370960/Icon_cocjoa.png"/></span><span className='real-data-rating'>{data.rating}</span></h1>
+                    <h1 className='detail-status'>Status: <span className='detail-status-real'>{data.readStatus}</span></h1>
+                    
+                </div>
+            </div>
+            <hr/>
+            <div className='lower'>
+                <h1 className='static-about-author'>About Author</h1>
+                <p className='dynamic-about-author'>{data.aboutAuthor}</p>
+                <h1 className='static-about-book'>About Book</h1>
+                <p className='dynamic-about-book'>{data.aboutBook}</p>
+                <div className='button-cont'>
+                    {data.previewLink && (
+                        <button className='see-more-button'>
+                            <a href={`http://localhost:4000${data.previewLink}`} target="_blank" rel="noopener noreferrer" className='read-link'>Start Reading Book</a>
+                        </button>
+                    )}
+                </div>
+               
+            </div>
+            
+        </div>
+        </div>
+        )
+    }
+    const renderLoadingView = ():React.ReactElement => {
+        return(
+            <div className="load">
+            
+            <div className="loader-container" data-testid="loader">
+                <TailSpin height={50} width={50} color="#0284C7" />
+            </div>
+            </div>)
+
+    }
+    const renderFailureView = () :React.ReactElement=> {
+        return(<div>
+            <img src="https://res.cloudinary.com/dqxhjnhrt/image/upload/v1752372175/Group_7522_iwvq1j.png" className="went-wrong-img"/>
+            <h1 className="went-wrong-head">Something went wrong, Please try again.</h1>
+            <button className="went-wrong-button">Try Again</button>
+        </div>)
+    }
+    const renderAllBooksViews = () => {
+        const {status} = apiResponse
+        switch(status){
+            case apiStatusConstants.success:
+                return renderBooksView()
+            case apiStatusConstants.failure:
+                return renderFailureView()
+            case apiStatusConstants.inProgress:
+                return renderLoadingView()
+            default:
+                return null
+        }
+    
+    }
+    return(
+        <div>
+            {renderAllBooksViews()}
+        </div>
+    )
+
+}
+export default Bookdetails

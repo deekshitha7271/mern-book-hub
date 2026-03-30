@@ -1,0 +1,97 @@
+.header-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  width: 100%;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+}
+
+.main-h {
+  font-family: "Almendra SC";
+  font-size: 24px;
+  font-weight: 500;
+  color: #ffffff;
+  margin-left: 8px;
+  letter-spacing: 1px;
+}
+
+.heading-cont {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.link-cont {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.logo-link {
+  text-decoration: none;
+}
+
+.nav-item {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  text-decoration: none;
+  position: relative;
+  padding: 8px 12px;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+.notIsActive {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.notIsActive:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.Active {
+  color: #fff;
+  font-weight: 600;
+}
+
+.Active::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 3px;
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(229, 46, 113, 0.6);
+}
+
+.logout {
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  border: none;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.logout:hover {
+  transform: scale(1.05);
+}
